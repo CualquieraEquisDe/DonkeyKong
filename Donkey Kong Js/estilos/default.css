@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+#lienzo{
+	border: 2px solid;
+	border-color: black;
+	border-radius: 15 px;
+}
+
+#simio{
+	visibility: hidden;
+	display: none;
+}
+
+#barril{
+
+	visibility: hidden;
+	display: none;
+
+}
