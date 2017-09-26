@@ -11,8 +11,7 @@ function Inicio(){
 	barril =new Barril();
 	simio = new Simio();
 	
-
-	animar();	
+	animar();
 
 }
 
@@ -24,13 +23,12 @@ function animar(){
 	contextoBuffer = buffer.getContext("2d");
 
 	contextoBuffer.clearRect(0,0,buffer.width, buffer.height);
-	barril.dibujar(contextoBuffer);
-	barril.actualizar();
+	
+	crearBarril(contextoBuffer);
 	simio.dibujar(contextoBuffer);
 	simio.actualizar();
 
 	
-
 	contexto.clearRect(0,0,lienzo.width, lienzo.height);
 	contexto.drawImage(buffer,0,0);
 
@@ -42,9 +40,10 @@ function animar(){
 function Simio(){
 
 
-	this.x = 0;
+	this.x = 450;
 	this.y = 365;
-	this.vel = 1;
+	this.vel = 10;
+	this.estado = 1;
 	this.img = $("#simio")[0];
 	
 	this.dibujar = function(ctx){
@@ -54,8 +53,8 @@ function Simio(){
 	this.actualizar = function(){
 		this.x += this.vel;
 
-		if (this.x  >= lienzo.width){
-			this.vel *= -1;
+		if (this.x  <= lienzo.width){
+			this.vel *= 2/5;
 		}
   
 	}
@@ -63,11 +62,11 @@ function Simio(){
 	this.cambiar_velocidad = function(accion){
 		if(accion == "aumentar"){
 		
-			this.vel += 3;	
+			this.vel += 5;	
 
 		}else{
 
-			this.vel -= 3;
+			this.vel -= 5;
 
 		}
 
@@ -88,12 +87,19 @@ function Barril(){
 	}
 
 	this.actualizar = function(){
+		
 		this.y += this.vel;
-
-		if (this.y +300>= lienzo.height ){
-			this.vel *= -1;
+		
+		
+		
+		if(this.y > simio.y && this.x > simio.x){
+			
+			!alert("Juego terminado");
+			simio.estado = 0;
+			
 		}
-  
+		
+		
 	}
 
 }
@@ -101,15 +107,21 @@ function Barril(){
 
 function manejarEvento(event){
 	
-	if(event.which == 38){
+	if(event.which == 68){
 
 		simio.cambiar_velocidad("aumentar");
 	}
 
-	if(event.which == 40){
+	if(event.which == 65){
 
 		simio.cambiar_velocidad("disminuir");
 	}		
 
 }
 
+function crearBarril(ctx){
+	
+	barril.dibujar(contextoBuffer);
+	barril.actualizar();
+	
+}
