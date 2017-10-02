@@ -46,14 +46,24 @@ function animar(){
 
 
 
-var misImagenes= new Array(7);
-  	misImagenes [0]= "imagenes/frame-1.gif";
-  	misImagenes [1]= "imagenes/frame-2.gif";
-  	misImagenes [2]= "imagenes/frame-3.gif";
-  	misImagenes [3]= "imagenes/frame-4.gif";
-  	misImagenes [4]= "imagenes/frame-5.gif";
-  	misImagenes [5]= "imagenes/frame-6.gif";
-  	misImagenes [6]= "imagenes/frame-7.gif";
+var misImagenesIzq= new Array(7);
+	var misImagenesDer= new Array(7);
+	var misImagenes = misImagenesDer;
+
+  	misImagenesDer [0]= "imagenes/frame-1.gif";
+  	misImagenesDer [1]= "imagenes/frame-2.gif";
+  	misImagenesDer [2]= "imagenes/frame-3.gif";
+  	misImagenesDer [3]= "imagenes/frame-4.gif";
+  	misImagenesDer [4]= "imagenes/frame-5.gif";
+  	misImagenesDer [5]= "imagenes/frame-6.gif";
+  	misImagenesDer [6]= "imagenes/frame-7.gif";
+  	misImagenesIzq [0]= "imagenes/frame-8.jpg";
+  	misImagenesIzq [1]= "imagenes/frame-9.jpg";
+  	misImagenesIzq [2]= "imagenes/frame-10.jpg";
+  	misImagenesIzq [3]= "imagenes/frame-11.jpg";
+  	misImagenesIzq [4]= "imagenes/frame-12.jpg";
+  	misImagenesIzq [5]= "imagenes/frame-13.jpg";
+  	misImagenesIzq [6]= "imagenes/frame-14.jpg";
 
 function cargarImagen(retraso){
 	
@@ -160,12 +170,12 @@ function Barril(x , y){
 function manejarEvento(event){
 	
 	if(event.which == 68 || event.which == 39){
-
+		misImagenes = misImagenesDer;
 		simio.cambiar_velocidad("aumentar");
 	}
 
 	if(event.which == 65 || event.which == 37){
-
+		misImagenes = misImagenesIzq;
 		simio.cambiar_velocidad("disminuir");
 
 	}	
