@@ -169,7 +169,7 @@ function Barril(x , y){
 function manejarEvento(event){
 	
 	if(event.which == 68 || event.which == 39){
-		misImagenes = mismagenesDer;
+		misImagenes = misImagenesDer;
 		simio.cambiar_velocidad("aumentar");
 	}
 
