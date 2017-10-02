@@ -6,6 +6,10 @@
 	border-color: black;
 	border-radius: 15 px;
 }
+#jungla{
+	visibility: hidden;
+	display: none;
+}
 
 #simio{
 	visibility: hidden;

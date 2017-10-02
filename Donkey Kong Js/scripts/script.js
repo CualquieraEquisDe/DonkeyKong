@@ -9,6 +9,8 @@ function Inicio(){
 	contexto = lienzo.getContext("2d");
 	buffer = document.createElement("canvas");
 
+	
+	
 
 	barril = (new Barril(Math.floor((Math.random() * 1100) + 0) , -10));
 
@@ -19,6 +21,8 @@ function Inicio(){
 
 }
 
+var i = 0;
+var retraso = 0;
 
 function animar(){
 
@@ -28,30 +32,63 @@ function animar(){
 
 	contextoBuffer.clearRect(0,0,buffer.width, buffer.height);
 	
+	
 	dibujarBarril(contextoBuffer);
-
 	simio.dibujar(contextoBuffer);
+	
 	simio.actualizar();
 
 	
 	contexto.clearRect(0,0,lienzo.width, lienzo.height);
 	contexto.drawImage(buffer,0,0);
-
+	cargarImagen(retraso);
+	retraso++;
 	setTimeout("animar()", 20);
 
 }
 
 
+
+var misImagenes= new Array(7);
+  	misImagenes [0]= "imagenes/frame-1.gif";
+  	misImagenes [1]= "imagenes/frame-2.gif";
+  	misImagenes [2]= "imagenes/frame-3.gif";
+  	misImagenes [3]= "imagenes/frame-4.gif";
+  	misImagenes [4]= "imagenes/frame-5.gif";
+  	misImagenes [5]= "imagenes/frame-6.gif";
+  	misImagenes [6]= "imagenes/frame-7.gif";
+
+function cargarImagen(retraso){
+	
+	
+	document.getElementById("simio").src = misImagenes[i];
+	if(retraso%15 == 0)
+		i++;
+
+	if(i == 6)
+		i = 0;	
+
+
+}
+
 function Simio(){
 
 
 	this.x = 450;
-	this.y = 365;
+	this.y = 335;
+	this.width=238;
+	this.height=301;
 	this.vel = 10;
 	this.estado = 1;
+
+	
+  	
+
 	this.img = $("#simio")[0];
+
 	
 	this.dibujar = function(ctx){
+		
 		ctx.drawImage(this.img, this.x , this.y);
 	}
 
@@ -85,11 +122,15 @@ function Barril(x , y){
 	var a = 0;
 	this.x = x;
 	this.y = y;
+	this.widht=128;
+	this.height=128;
 	this.vel = 4;
 	this.img = $("#barril")[0];
 	contextoBuffer = buffer.getContext("2d");
+	this.fondo = $("#jungla")[0];
 	
 	this.dibujar = function(ctx){
+		ctx.drawImage(this.fondo, 0, 0);
 		ctx.drawImage(this.img, this.x , this.y);
 	}
 
@@ -104,7 +145,7 @@ function Barril(x , y){
 			
 		}
 		
-		 console.log(simio.estado);
+		 
 		 if(simio.estado != 0){
 			if(this.y > lienzo.height){
 				a++;
@@ -116,15 +157,11 @@ function Barril(x , y){
 						alert("Ganó");
 						this.vel = 5;
 					}
-
 					a = 0;
 				}
 			}
-		 }
-		
-		
+		 }	
 	}
-
 }
 
 
