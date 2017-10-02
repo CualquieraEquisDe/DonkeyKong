@@ -81,7 +81,7 @@ function Simio(){
 
 
 	this.x = 271;
-	this.y = 260;
+	this.y = 335;
 	this.width=260;
 	this.height=271;
 	this.vel = 10;
