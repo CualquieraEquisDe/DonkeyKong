@@ -71,10 +71,10 @@ function cargarImagen(retraso){
 function Simio(){
 
 
-	this.x = 450;
-	this.y = 335;
-	this.width=238;
-	this.height=301;
+	this.x = 271;
+	this.y = 260;
+	this.width=260;
+	this.height=271;
 	this.vel = 10;
 	this.estado = 1;
 
@@ -122,7 +122,7 @@ function Barril(x , y){
 	this.x = x;
 	this.y = y;
 	this.width=128;
-	this.height=128;
+	this.height=122;
 	this.vel = 4;
 	this.img = $("#barril")[0];
 	contextoBuffer = buffer.getContext("2d");
