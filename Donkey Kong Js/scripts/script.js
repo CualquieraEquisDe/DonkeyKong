@@ -9,8 +9,6 @@ function Inicio(){
 	contexto = lienzo.getContext("2d");
 	buffer = document.createElement("canvas");
 
-	
-	
 
 	barril = (new Barril(Math.floor((Math.random() * 1100) + 0) , -10));
 
@@ -37,7 +35,6 @@ function animar(){
 	simio.dibujar(contextoBuffer);
 	
 	simio.actualizar();
-
 	
 	contexto.clearRect(0,0,lienzo.width, lienzo.height);
 	contexto.drawImage(buffer,0,0);
@@ -95,6 +92,8 @@ function Simio(){
 	this.actualizar = function(){
 		this.x += this.vel;
 
+		collider();
+
 		if (this.x  <= lienzo.width){
 			this.vel *= 2/5;
 		}
@@ -122,7 +121,7 @@ function Barril(x , y){
 	var a = 0;
 	this.x = x;
 	this.y = y;
-	this.widht=128;
+	this.width=128;
 	this.height=128;
 	this.vel = 4;
 	this.img = $("#barril")[0];
@@ -137,13 +136,6 @@ function Barril(x , y){
 	this.actualizar = function(){
 		
 		this.y += this.vel;
-		
-		if(this.x < simio.x + simio.width && this.x + this.width > simio.x && this.y < simio.y + simio.height && this.y + this.height > simio.y ){
-			
-			!alert("choco");
-			simio.estado = 0;
-			
-		}
 		
 		 
 		 if(simio.estado != 0){
@@ -187,5 +179,21 @@ function dibujarBarril(ctx){
 	barril.dibujar(ctx);
 	barril.actualizar();
 
+
+}
+
+function collider() {
+	
+
+
+	if (simio.x < barril.x + barril.width && 
+			simio.x + simio.width > barril.x && 
+			simio.y < barril.y + barril.height &&
+			simio.height + simio.y > barril.y){
+
+			alert("Colision");
+			simio.estado = 0;
+
+		}
 
 }
