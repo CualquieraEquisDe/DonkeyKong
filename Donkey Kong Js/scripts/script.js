@@ -8,7 +8,11 @@ function Inicio(){
 	lienzo = $("#lienzo")[0];
 	contexto = lienzo.getContext("2d");
 	buffer = document.createElement("canvas");
-	barril =new Barril();
+
+
+	barril = (new Barril(Math.floor((Math.random() * 1100) + 0) , -10));
+
+
 	simio = new Simio();
 	
 	animar();
@@ -24,7 +28,8 @@ function animar(){
 
 	contextoBuffer.clearRect(0,0,buffer.width, buffer.height);
 	
-	crearBarril(contextoBuffer);
+	dibujarBarril(contextoBuffer);
+
 	simio.dibujar(contextoBuffer);
 	simio.actualizar();
 
@@ -62,11 +67,11 @@ function Simio(){
 	this.cambiar_velocidad = function(accion){
 		if(accion == "aumentar"){
 		
-			this.vel += 5;	
+			this.vel += 10;	
 
 		}else{
 
-			this.vel -= 5;
+			this.vel -= 10;
 
 		}
 
@@ -74,13 +79,15 @@ function Simio(){
 
 }
 
-function Barril(){
+function Barril(x , y){
 
 
-	this.x = 310;
-	this.y = -10;
-	this.vel = 3;
+	var a = 0;
+	this.x = x;
+	this.y = y;
+	this.vel = 4;
 	this.img = $("#barril")[0];
+	contextoBuffer = buffer.getContext("2d");
 	
 	this.dibujar = function(ctx){
 		ctx.drawImage(this.img, this.x , this.y);
@@ -90,14 +97,30 @@ function Barril(){
 		
 		this.y += this.vel;
 		
-		
-		
-		if(this.y > simio.y && this.x > simio.x){
+		if(this.x < simio.x + simio.width && this.x + this.width > simio.x && this.y < simio.y + simio.height && this.y + this.height > simio.y ){
 			
-			!alert("Juego terminado");
+			!alert("choco");
 			simio.estado = 0;
 			
 		}
+		
+		 console.log(simio.estado);
+		 if(simio.estado != 0){
+			if(this.y > lienzo.height){
+				a++;
+				this.x = (Math.floor((Math.random() * 1100) + 0));
+				this.y = 0;
+				if(a == 3){
+					this.vel += 5;
+					if(this.vel >= 25){
+						alert("Ganó");
+						this.vel = 5;
+					}
+
+					a = 0;
+				}
+			}
+		 }
 		
 		
 	}
@@ -107,21 +130,25 @@ function Barril(){
 
 function manejarEvento(event){
 	
-	if(event.which == 68){
+	if(event.which == 68 || event.which == 39){
 
 		simio.cambiar_velocidad("aumentar");
 	}
 
-	if(event.which == 65){
+	if(event.which == 65 || event.which == 37){
 
 		simio.cambiar_velocidad("disminuir");
-	}		
+
+	}	
+
 
 }
 
-function crearBarril(ctx){
-	
-	barril.dibujar(contextoBuffer);
+function dibujarBarril(ctx){
+
+
+	barril.dibujar(ctx);
 	barril.actualizar();
-	
+
+
 }
