@@ -56,13 +56,13 @@ function animar(){
   	misImagenesDer [4]= "imagenes/Derecha/frame-5.gif";
   	misImagenesDer [5]= "imagenes/Derecha/frame-6.gif";
   	misImagenesDer [6]= "imagenes/Derecha/frame-7.gif";
-  	misImagenesIzq [0]= "imagenes/Izquierda/frame-1.jpg";
-  	misImagenesIzq [1]= "imagenes/Izquierda/frame-2.jpg";
-  	misImagenesIzq [2]= "imagenes/Izquierda/frame-3.jpg";
-  	misImagenesIzq [3]= "imagenes/Izquierda/frame-4.jpg";
-  	misImagenesIzq [4]= "imagenes/Izquierda/frame-5.jpg";
-  	misImagenesIzq [5]= "imagenes/Izquierda/frame-6.jpg";
-  	misImagenesIzq [6]= "imagenes/Izquierda/frame-7.jpg";
+  	misImagenesIzq [0]= "imagenes/Izquierda/frame-1.gif";
+  	misImagenesIzq [1]= "imagenes/Izquierda/frame-2.gif";
+  	misImagenesIzq [2]= "imagenes/Izquierda/frame-3.gif";
+  	misImagenesIzq [3]= "imagenes/Izquierda/frame-4.gif";
+  	misImagenesIzq [4]= "imagenes/Izquierda/frame-5.gif";
+  	misImagenesIzq [5]= "imagenes/Izquierda/frame-6.gif";
+  	misImagenesIzq [6]= "imagenes/Izquierda/frame-7.gif";
 
 function cargarImagen(retraso){
 	
