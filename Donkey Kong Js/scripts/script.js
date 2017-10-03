@@ -103,8 +103,13 @@ function Simio(){
 
 		collider();
 
-		if (this.x  <= lienzo.width){
-			this.vel *= 2/5;
+		if (this.x  > lienzo.width){
+			this.x= -320;
+		}
+		
+		
+		if(this.x < -320){
+			this.x = lienzo.width;
 		}
   
 	}
@@ -112,11 +117,11 @@ function Simio(){
 	this.cambiar_velocidad = function(accion){
 		if(accion == "aumentar"){
 		
-			this.vel += 10;	
+			this.vel = 10;	
 
 		}else{
 
-			this.vel -= 10;
+			this.vel = -10;
 
 		}
 
@@ -195,13 +200,15 @@ function collider() {
 	
 
 
-	if (simio.x < barril.x + barril.width && 
-			simio.x + simio.width > barril.x && 
-			simio.y < barril.y + barril.height &&
+	if (simio.x < barril.x + barril.width -50 && 
+			simio.x + simio.width - 50 > barril.x && 
+			simio.y < barril.y + barril.height -50 &&
 			simio.height + simio.y > barril.y){
 
 			alert("Colision");
-			simio.estado = 0;
+			barril.x =0;
+			barril.y=-10;
+			//simio.estado = 1;
 
 		}
 
